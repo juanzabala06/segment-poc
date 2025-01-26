@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<h1>Thank You!</h1>
+<p>Your email has been submitted successfully.</p>
+
+<script>
+    // Extract email from query parameters
+    function getParameterByName(name) {
+        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+
+    // Use HubSpot's _hsq to identify the visitor
+    var _hsq = window._hsq = window._hsq || [];
+    var email = getParameterByName('email');
+
+    if (email) {
+        _hsq.push([
+            'identify',
+            {
+                email: email
+            }
+        ]);
+        console.log("HubSpot Identify Call Sent:", { email });
+    } else {
+        console.warn("Email not found in query parameters");
+    }
+</script>
+{% endblock %}

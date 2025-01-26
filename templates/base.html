@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flask HubSpot Integration{% endblock %}</title>
+    
+    <!-- Pass the portal_id to JavaScript -->
+    <script>
+        const HUBSPOT_PORTAL_ID = "{{ portal_id }}";
+        // Dynamically load the HubSpot tracking script
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'hs-script-loader';
+        script.async = true;
+        script.defer = true;
+        script.src = `https://js.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`;
+        document.head.appendChild(script);
+    </script>
+
+    <script>
+        // Function to retrieve the UTK from cookies
+        function getUTK() {
+            return document.cookie
+                .split('; ')
+                .find(row => row.startsWith('hubspotutk='))
+                ?.split('=')[1];
+        }
+
+        // Function to send the button event to the backend
+        function sendEventToBackend(buttonName) {
+            const utk = getUTK();
+            if (utk) {
+                fetch('/capture-event', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ hubspotutk: utk, button_name: buttonName })
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error("Error sending event:", error));
+            } else {
+                console.warn("HubSpot UTK not found");
+            }
+        }
+
+        // Attach event listeners to buttons
+        function setupEventListeners() {
+            const buttons = document.querySelectorAll('[data-button]');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => sendEventToBackend(button.dataset.button));
+            });
+        }
+
+        // Set up event listeners when the page loads
+        window.onload = setupEventListeners;
+    </script>
+</head>
+<body>
+    {% block content %}
+    <!-- Child templates will inject content here -->
+    {% endblock %}
+</body>
+</html>

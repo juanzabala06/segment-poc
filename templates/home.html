@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Home Page</h1>
+<p>HubSpot tracking is enabled. Your UTK will be captured and sent to the server.</p>
+<p>Click any button to simulate an anonymous event.</p>
+
+<button data-button="Button 1">Button 1</button>
+<button data-button="Button 2">Button 2</button>
+<button data-button="Button 3">Button 3</button>
+
+<h2>Click the button below to go to the registration page</h2>
+<button onclick="window.location.href='/email-form'">Register</button>
+{% endblock %}

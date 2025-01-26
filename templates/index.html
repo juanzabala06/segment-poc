@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSpot Flask Integration</title>
+    <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/6395217.js"></script>
+    <script>
+        // Function to capture and send the UTK to the backend
+        function sendUTKToBackend() {
+            const utk = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('hubspotutk='))
+                ?.split('=')[1];
+            
+            if (utk) {
+                console.log("HubSpot UTK:", utk);
+                fetch('/capture-utk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ hubspotutk: utk })
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error("Error sending UTK:", error));
+            } else {
+                console.warn("HubSpot UTK not found");
+            }
+        }
+
+        // Send UTK when the page loads
+        window.onload = sendUTKToBackend;
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Segment + HubSpot Demo app</h1>
+    <p>HubSpot tracking is enabled. Your UTK will be captured and sent to the server.</p>
+</body>
+</html>
