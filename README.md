@@ -37,8 +37,7 @@ Ensure you have Jupyter installed. It will be installed with the dependencies be
 ### Clone the Repository
 Clone the project repository to your local machine:
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone [<repository-url>](https://github.com/juanzabala06/segment-poc.git)
 ```
 
 ### Create a Virtual Environment
