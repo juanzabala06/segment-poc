@@ -6,7 +6,7 @@ This project demonstrates a test app that integrates Python with HubSpot and Seg
 ## Run the Notebook in Google Colab (Recommended)
 
 For convenience, you can run the notebook in Google Colab using the following link:
-Run in Google Colab
+[Run in Google Colab](https://colab.research.google.com/drive/1r_Zy6_mnFEjWwxYNhfRJqUt2mst3SEwz?usp=sharing)
 
 This version of the notebook has been modified to simplify execution:
 
