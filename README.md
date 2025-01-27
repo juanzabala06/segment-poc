@@ -3,6 +3,16 @@
 This project demonstrates a test app that integrates Python with HubSpot and Segment. It includes sample mappings for contacts, deals, and custom events using Segment and HubSpot's Cloud Mode actions.
 
 ---
+## Run the Notebook in Google Colab (Recommended)
+
+For convenience, you can run the notebook in Google Colab using the following link:
+Run in Google Colab
+
+This version of the notebook has been modified to simplify execution:
+
+The requirements.txt file and the dummies.py file are not required.
+
+The Segment Write Key can be declared inline within the notebook for quick setup.
 
 ## **Prerequisites**
 
