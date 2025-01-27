@@ -167,7 +167,7 @@ This notebook is a proof of concept for using Twilio Segment Customer Data Platf
 
 2. Add the Segment Write Key to your `.env` file:
    ```env
-   SEGMENT_WRITE_KEY=your_segment_write_key
+   WRITE_KEY=your_segment_write_key
    ```
 
 3. In Segment, configure your mappings:
@@ -187,6 +187,19 @@ This notebook is a proof of concept for using Twilio Segment Customer Data Platf
 2. Verify the events and mappings in the Segment debugger.
 3. Confirm that events appear in your HubSpot account under custom events or associated records.
 
+---
+
+## **HubSpot Configuration**
+
+### Find your portal ID
+1. Log in to your HubSpot account and click on the profile icon:
+   - **Find your company name**
+   - **Copy the number underneath**
+
+2. Add the Portal ID to your `.env` file:
+   ```env
+   HUBSPOT_PORTAL_ID=your_hubspot_portal_id
+   ```
 ---
 
 ## **Key Features**
